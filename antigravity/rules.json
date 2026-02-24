@@ -1,0 +1,177 @@
+{
+    "project": "StoryDeck AI",
+    "version": "1.0.0",
+    "description": "AI-powered structured business storytelling presentation builder.",
+    "global_rules": {
+        "role": "Act as a senior SaaS architect and principal engineer.",
+        "mission": "Build a structured-thinking AI presentation system, not a generic slide generator.",
+        "core_principles": [
+            "Structured thinking before slide generation",
+            "Strict JSON AI outputs",
+            "Vertical-first (Startup Pitch Mode only for MVP)",
+            "Clean modular architecture",
+            "No overengineering",
+            "Production-ready code only"
+        ]
+    },
+    "tech_stack": {
+        "frontend": [
+            "Next.js (App Router)",
+            "TypeScript",
+            "TailwindCSS",
+            "shadcn/ui",
+            "Zustand",
+            "React Hook Form"
+        ],
+        "backend": [
+            "Supabase (Auth + Postgres + Storage)",
+            "Stripe",
+            "OpenAI API"
+        ],
+        "export_engine": "pptxgenjs"
+    },
+    "architecture_rules": {
+        "separation_of_concerns": true,
+        "no_business_logic_in_ui": true,
+        "server_actions_for_ai_calls": true,
+        "strong_typing_required": true,
+        "ai_prompt_modularity": true,
+        "json_schema_validation_required": true,
+        "feature_gating_by_plan": true
+    },
+    "folder_structure": {
+        "app": [
+            "(auth)",
+            "dashboard",
+            "project/[id]",
+            "api"
+        ],
+        "lib": [
+            "ai/outline-generator.ts",
+            "ai/slide-generators/problem.ts",
+            "ai/slide-generators/solution.ts",
+            "ai/slide-generators/market.ts",
+            "ai/slide-generators/traction.ts",
+            "ai/slide-generators/business-model.ts",
+            "ai/slide-generators/roadmap.ts",
+            "ai/slide-generators/financials.ts",
+            "db",
+            "stripe",
+            "export"
+        ],
+        "components": [
+            "slide-editor",
+            "slide-canvas",
+            "sidebar"
+        ],
+        "types": [],
+        "store": []
+    },
+    "database_schema": {
+        "users": {
+            "id": "uuid",
+            "email": "string",
+            "plan_type": "free | pro | business",
+            "created_at": "timestamp"
+        },
+        "projects": {
+            "id": "uuid",
+            "user_id": "uuid",
+            "title": "string",
+            "type": "string",
+            "created_at": "timestamp"
+        },
+        "deck_outlines": {
+            "id": "uuid",
+            "project_id": "uuid",
+            "structured_json": "jsonb",
+            "approved": "boolean"
+        },
+        "slides": {
+            "id": "uuid",
+            "project_id": "uuid",
+            "slide_type": "string",
+            "slide_order": "integer",
+            "content_json": "jsonb",
+            "template": "string"
+        },
+        "brand_kits": {
+            "id": "uuid",
+            "user_id": "uuid",
+            "primary_color": "string",
+            "secondary_color": "string",
+            "font_family": "string",
+            "logo_url": "string"
+        }
+    },
+    "ai_system_rules": {
+        "no_generic_prompt": true,
+        "outline_generator_required": true,
+        "slide_specific_prompts_required": true,
+        "strict_json_output_only": true,
+        "reject_non_json_responses": true,
+        "tone": "Concise, investor-ready, business-focused, no fluff",
+        "example_outline_schema": {
+            "slides": [
+                {
+                    "type": "title",
+                    "title": "Company Name"
+                },
+                {
+                    "type": "problem",
+                    "title": "The Problem",
+                    "bullets": [
+                        "string"
+                    ]
+                }
+            ]
+        }
+    },
+    "mvp_constraints": {
+        "vertical": "Startup Pitch Mode only",
+        "no_collaboration": true,
+        "no_realtime_sync": true,
+        "no_google_sheets_integration": true,
+        "no_multilanguage": true,
+        "minimal_design_system": true
+    },
+    "stripe_plans": {
+        "free": {
+            "decks_per_month": 3,
+            "ppt_export": false
+        },
+        "pro": {
+            "price": 19,
+            "currency": "USD",
+            "unlimited_decks": true,
+            "ppt_export": true,
+            "brand_kit": true
+        },
+        "business": {
+            "price": 49,
+            "reserved_for_future": true
+        }
+    },
+    "security_rules": {
+        "never_expose_api_keys": true,
+        "supabase_rls_required": true,
+        "validate_ai_json_before_save": true,
+        "server_side_stripe_validation": true
+    },
+    "development_sequence": [
+        "Setup Next.js project",
+        "Integrate Supabase Auth",
+        "Project creation flow",
+        "Structured Q&A form",
+        "Outline generator",
+        "Slide generators",
+        "Slide editor UI",
+        "PPT export",
+        "Stripe integration"
+    ],
+    "goal": {
+        "timeline_weeks": 6,
+        "deliverable": "Production-ready MVP with scalable architecture",
+        "quality": "Deployable, clean, modular, investor-grade"
+    }
+}
